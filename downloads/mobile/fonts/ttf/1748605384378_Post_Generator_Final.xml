@@ -1,0 +1,843 @@
+<!--DesignLab Official-->
+<style>
+    .headH::after { content: ' Post Generators'; }
+    .form { display: flex; flex-direction: column; }
+    pre .num+code { padding-top: -0; }
+    input[type="text"], input[type="number"], textarea, select { padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid var(--contentL); background: #f9f9f9; font-size: 16px; color: #333; width: 100%; }
+    .resolution-container { display: flex; gap: 10px; }
+    .resolution-container input[type="number"] { width: 50%; }
+    input[type="submit"] { background-color: var(--linkC); color: white; padding: 10px; border: 0; border-radius: 5px; cursor: pointer; font-size: 18px; }
+    input[type="submit"]:hover { opacity: 0.7; }
+    .generated-code-section { margin-top: 20px; display: none; } /* Renamed for clarity */
+    .drK input[type="text"], .drK input[type="number"], .drK textarea, .drK select { background: #333; color: #e0e0e0; }
+    #copyButton { margin-top: 10px; padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; display: none; /* Initially hidden */ }
+    #copyButton:hover { background-color: #0056b3; }
+    .price-box, .download-link-box { /* Common class for initial state handling */ }
+</style>
+
+<div class="flex-container">
+    <div class="image-section"><img class='pageImg' alt='Post Generator' src='https://cloud.plpfiles.com/assets/images/post.svg'/></div>
+    <div class="details-section">
+        <p>The Post Generator is a handy tool for graphic designers and bloggers. This generator simplifies the process of creating posts by allowing users to enter essential information, such as file type, contributor details, and download options, for both mobile and computer design files.</p>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Post Generator</h1>
+
+    <label for="file-type-selector">Select File Category:</label>
+    <select id="file-type-selector">
+        <option value="">-- Select Category --</option>
+        <option value="mobile">Mobile Files</option>
+        <option value="computer">Computer Files</option>
+    </select>
+
+    <!-- Mobile Files Form Section -->
+    <div id="mobile-form-section" class="form-section" style="display: none;">
+        <h2>Mobile Files Generator</h2>
+        <form class="form" id="postFormMobile">
+            <label for="post-title-mobile">Post Title:</label>
+            <input type="text" id="post-title-mobile" placeholder="Enter Post Title" required>
+
+            <label for="image-url-mobile">Image URL:</label>
+            <input type="text" id="image-url-mobile" placeholder="Enter Image URL" required>
+
+            <label for="license-mobile">License Type:</label>
+            <select id="license-mobile" required>
+                <option value="Premium">Premium</option>
+                <option value="Free">Free</option>
+            </select>
+
+            <div class="price-box" id="price-box-mobile">
+              <label for="price-mobile">Price (BDT):</label>
+              <input type="number" id="price-mobile" value="50">
+            </div>
+
+            <div class="download-link-box" id="download-link-box-mobile" style="display: none;">
+                <label for="download-link-mobile">Download Link:</label>
+                <input type="text" id="download-link-mobile" placeholder="Enter Download Link">
+            </div>
+
+            <label for="formats-mobile">File Formats:</label>
+            <select id="formats-mobile" required>
+              <option disabled selected hidden value="">Select File Type</option>
+                <option value="PLP">PLP</option>
+                <option value="IPV">IPV</option>
+                <option value="JPG">JPG</option>
+                <option value="PNG">PNG</option>
+                <option value="Fonts">Fonts</option>
+            </select>
+
+            <div id="font-type-box-mobile" style="display: none;">
+                <label for="font-type-mobile">Font Type:</label>
+                <select id="font-type-mobile">
+                    <option value="TTF">TTF</option>
+                    <option value="OTF">OTF</option>
+                    <option value="WOFF">WOFF</option>
+                    <option value="EOT">EOT</option>
+                    <option value="SVG">SVG</option>
+                </select>
+            </div>
+
+            <div id="software-field-wrapper-mobile">
+                <label for="software-mobile">Software:</label>
+                <select id="software-mobile" required>
+                  <option disabled selected hidden value="">Select App Name</option>
+                    <option value="PixelLab">PixelLab App</option>
+                    <option value="DesignLab">DesignLab App</option>
+                    <option value="Ibis Paint X">Ibis Paint X</option>
+                </select>
+            </div>
+
+            <div id="resolution-field-wrapper-mobile">
+                <label for="resolution-mobile">Resolution:</label>
+                <select id="resolution-mobile" required>
+                    <option disabled selected hidden value="">Select Resolutions</option>
+                    <option value="High Quality">High Quality</option>
+                    <option value="Medium Quality">Medium Quality</option>
+                    <option value="Low Quality">Low Quality</option>
+                </select>
+            </div>
+
+            <label for="file-size-input-mobile">Size:</label>
+            <div class="resolution-container">
+                <input type="number" id="file-size-input-mobile" placeholder="Enter file size" required>
+                <select id="file-size-unit-mobile" required>
+                    <option value="MB">MB</option>
+                    <option value="KB">KB</option>
+                </select>
+            </div>
+
+           <label for="contributor-mobile">Contributor Name:</label>
+            <select id="contributor-mobile" required>
+              <option disabled selected hidden value="">Select Your Name</option>
+              <option value="Yamin Ahmed">Yamin Ahmed</option>
+              <option value="Nafich Shikdar">Nafich Shikdar</option>
+              <option value="Muhammad Shohan">Muhammad Shohan</option>
+              <option value="Mushire Elahi Tanzeem">Mushire Elahi Tanzeem</option>
+              <option value="Custom">Custom</option>
+            </select>
+
+            <div id="custom-contributor-name-box-mobile" style="display: none;">
+                <label for="custom-contributor-name-mobile">Custom Contributor Name:</label>
+                <input type="text" id="custom-contributor-name-mobile" placeholder="Enter Custom Name">
+            </div>
+
+            <label for="contributor-url-mobile">Contributor URL:</label>
+            <input id="contributor-url-mobile" type="text" required>
+
+            <label for="categories-mobile">Categories:</label>
+            <select id="categories-mobile" required>
+              <option disabled selected hidden value="">Select Category Name</option>
+                <option value="Logos">Logos</option>
+                <option value="3D Text">3D Text</option>
+                <option value="Posters">Posters</option>
+                <option value="Banners">Banners</option>
+                <option value="Images Jpg">Image Jpg</option>
+                <option value="Images Png">Image Png</option>
+                <option value="Thumbnails">Thumbnails</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Mascots Logos">Mascots Logos</option>
+                <option value="Fonts">Fonts</option>
+            </select>
+
+            <label for="upload-date-mobile">Upload Date:</label>
+            <input type="text" id="upload-date-mobile" disabled>
+
+            <label for="related-tags-mobile">Related Tags:</label>
+            <input type="text" id="related-tags-mobile" placeholder="tag_name_1, tag_name_2" required>
+
+            <label for="search-description-mobile">Search Description:</label>
+            <input type="text" id="search-description-mobile" placeholder="Download the free thumbnail PLP file..." required>
+
+            <input type="submit" value="Generate Mobile Post">
+        </form>
+    </div>
+
+    <!-- Computer Files Form Section -->
+    <div id="computer-form-section" class="form-section" style="display: none;">
+        <h2>Computer Files Generator</h2>
+        <form class="form" id="postFormComputer">
+            <label for="post-title-computer">Post Title:</label>
+            <input type="text" id="post-title-computer" placeholder="Enter Post Title" required>
+
+            <label for="image-url-computer">Image URL:</label>
+            <input type="text" id="image-url-computer" placeholder="Enter Image URL" required>
+
+            <label for="license-computer">License Type:</label>
+            <select id="license-computer" required>
+                <option value="Premium">Premium</option>
+                <option value="Free">Free</option>
+            </select>
+
+            <div class="price-box" id="price-box-computer">
+              <label for="price-computer">Price (BDT):</label>
+              <input type="number" id="price-computer" value="50">
+            </div>
+
+            <div class="download-link-box" id="download-link-box-computer" style="display: none;">
+                <label for="download-link-computer">Download Link:</label>
+                <input type="text" id="download-link-computer" placeholder="Enter Download Link">
+            </div>
+
+            <label for="formats-computer">File Formats:</label>
+            <select id="formats-computer" required>
+              <option disabled selected hidden value="">Select File Type</option>
+                <option value="PSD">PSD</option>
+                <option value="AI">AI</option>
+                <option value="EPS">EPS</option>
+                <option value="XD">XD</option>
+                <option value="FIG">FIG</option>
+                <option value="INDD">INDD</option>
+                <option value="SKETCH">SKETCH</option>
+                <option value="RAW">RAW</option>
+                <option value="ANY">ANY</option>
+                <option value="Fonts">Fonts</option>
+            </select>
+
+            <div id="font-type-box-computer" style="display: none;">
+                <label for="font-type-computer">Font Type:</label>
+                <select id="font-type-computer">
+                    <option value="TTF">TTF</option>
+                    <option value="OTF">OTF</option>
+                    <option value="WOFF">WOFF</option>
+                    <option value="EOT">EOT</option>
+                    <option value="SVG">SVG</option>
+                </select>
+            </div>
+
+            <div id="software-field-wrapper-computer">
+                <label for="software-computer">Software:</label>
+                <select id="software-computer" required>
+                  <option disabled selected hidden value="">Select Software Name</option>
+                    <option value="Adobe Photoshop">Adobe Photoshop</option>
+                    <option value="Adobe Illustrator">Adobe Illustrator</option>
+                    <option value="Adobe InDesign">Adobe InDesign</option>
+                    <option value="Adobe Express">Adobe Express</option>
+                    <option value="Photopea">Photopea</option>
+                    <option value="Figma">Figma</option>
+                </select>
+            </div>
+
+            <div id="resolution-field-wrapper-computer">
+                <label for="resolution-computer">Resolution:</label>
+                <select id="resolution-computer" required>
+                    <option disabled selected hidden value="">Select Resolutions</option>
+                    <option value="High Quality">High Quality</option>
+                    <option value="Medium Quality">Medium Quality</option>
+                    <option value="Low Quality">Low Quality</option>
+                </select>
+            </div>
+
+            <label for="file-size-input-computer">Size:</label>
+            <div class="resolution-container">
+                <input type="number" id="file-size-input-computer" placeholder="Enter file size" required>
+                <select id="file-size-unit-computer" required>
+                    <option value="MB">MB</option>
+                    <option value="KB">KB</option>
+                </select>
+            </div>
+
+           <label for="contributor-computer">Contributor Name:</label>
+            <select id="contributor-computer" required>
+              <option disabled selected hidden value="">Select Your Name</option>
+              <option value="Yamin Ahmed">Yamin Ahmed</option>
+              <option value="Nafich Shikdar">Nafich Shikdar</option>
+              <option value="Muhammad Shohan">Muhammad Shohan</option>
+              <option value="Mushire Elahi Tanzeem">Mushire Elahi Tanzeem</option>
+              <option value="Custom">Custom</option>
+            </select>
+
+            <div id="custom-contributor-name-box-computer" style="display: none;">
+                <label for="custom-contributor-name-computer">Custom Contributor Name:</label>
+                <input type="text" id="custom-contributor-name-computer" placeholder="Enter Custom Name">
+            </div>
+
+            <label for="contributor-url-computer">Contributor URL:</label>
+            <input id="contributor-url-computer" type="text" required>
+
+            <label for="categories-computer">Categories:</label>
+            <select id="categories-computer" required>
+              <option disabled selected hidden value="">Select Category Name</option>
+              <option value="Logos">Logos</option>
+              <option value="3D Text">3D Text</option>
+              <option value="Posters">Posters</option>
+              <option value="Banners">Banners</option>
+              <option value="Images Jpg">Image Jpg</option>
+              <option value="Images Png">Image Png</option>
+              <option value="Thumbnails">Thumbnails</option>
+              <option value="Documentary">Documentary</option>
+              <option value="Mascots Logos">Mascots Logos</option>
+              <option value="Fonts">Fonts</option>
+            </select>
+
+            <label for="upload-date-computer">Upload Date:</label>
+            <input type="text" id="upload-date-computer" disabled>
+
+            <label for="related-tags-computer">Related Tags:</label>
+            <input type="text" id="related-tags-computer" placeholder="tag_name_1, tag_name_2" required>
+
+            <label for="search-description-computer">Search Description:</label>
+            <input type="text" id="search-description-computer" placeholder="Download the free thumbnail PSD file..." required>
+
+            <input type="submit" value="Generate Computer Post">
+        </form>
+    </div>
+
+    <!-- Generated Code Output Area (Common for both) -->
+    <button id="copyButton">COPY</button>
+    <div class="generated-code-section" id="generatedCodeSection">
+        <pre data-comment='.html' data-source='src/index.html'><code id="outputCode"></code></pre>
+    </div>
+</div>
+
+<script>
+    // --- Helper Functions (Common) ---
+    function generateVectorId() {
+        return Math.floor(1000000000 + Math.random() * 9000000000);
+    }
+
+    function getCurrentDate() {
+        const date = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+
+    // --- Contributor Fields Logic (Common, parameterized) ---
+    function updateContributorFields(type) { // type can be 'mobile' or 'computer'
+        const contributorSelect = document.getElementById(`contributor-${type}`);
+        const urlInput = document.getElementById(`contributor-url-${type}`);
+        const customNameBox = document.getElementById(`custom-contributor-name-box-${type}`);
+        const customNameInput = document.getElementById(`custom-contributor-name-${type}`);
+
+        const predefinedUrls = {
+            "Yamin Ahmed": "https://designlabofficial.blogspot.com/p/yamin.html",
+            "Nafich Shikdar": "https://designlabofficial.blogspot.com/p/nafich-shikdar.html",
+            "Muhammad Shohan": "https://designlabofficial.blogspot.com/p/muhammad-shohan.html",
+            "Mushire Elahi Tanzeem": "https://designlabofficial.blogspot.com/p/mushire-elahi-tanzeem.html",
+        };
+
+        const selectedValue = contributorSelect.value;
+
+        if (selectedValue === "Custom") {
+            customNameBox.style.display = "block";
+            customNameInput.value = "";
+            customNameInput.required = true;
+            urlInput.value = "";
+            urlInput.readOnly = false;
+            urlInput.placeholder = "Enter Contributor URL";
+        } else {
+            customNameBox.style.display = "none";
+            customNameInput.required = false;
+            urlInput.value = predefinedUrls[selectedValue] || "";
+            urlInput.readOnly = true;
+            urlInput.placeholder = "";
+        }
+    }
+
+    // --- Format Change Handler (Common, parameterized) ---
+    function handleFormatChange(type) {
+        const mainFormatSelect = document.getElementById(`formats-${type}`);
+        const fontTypeBox = document.getElementById(`font-type-box-${type}`);
+        const fontTypeSelect = document.getElementById(`font-type-${type}`);
+        const softwareWrapper = document.getElementById(`software-field-wrapper-${type}`);
+        const softwareSelect = document.getElementById(`software-${type}`);
+        const resolutionWrapper = document.getElementById(`resolution-field-wrapper-${type}`);
+        const resolutionSelect = document.getElementById(`resolution-${type}`);
+        const categoriesSelect = document.getElementById(`categories-${type}`);
+
+        if (mainFormatSelect.value === 'Fonts') {
+            fontTypeBox.style.display = 'block';
+            if (fontTypeSelect) fontTypeSelect.required = true;
+
+            if (softwareWrapper) softwareWrapper.style.display = 'none';
+            if (softwareSelect) softwareSelect.required = false;
+
+            if (resolutionWrapper) resolutionWrapper.style.display = 'none';
+            if (resolutionSelect) resolutionSelect.required = false;
+
+            // Automatically select "Fonts" in categories if available
+            if (categoriesSelect) {
+                const fontsOption = Array.from(categoriesSelect.options).find(opt => opt.value === 'Fonts');
+                if (fontsOption) {
+                    categoriesSelect.value = 'Fonts';
+                }
+            }
+
+        } else {
+            fontTypeBox.style.display = 'none';
+            if (fontTypeSelect) fontTypeSelect.required = false;
+
+            if (softwareWrapper) softwareWrapper.style.display = 'block';
+            if (softwareSelect) softwareSelect.required = true;
+
+            if (resolutionWrapper) resolutionWrapper.style.display = 'block';
+            if (resolutionSelect) resolutionSelect.required = true;
+
+             // If not Fonts, and category was Fonts, reset it or let user choose
+            if (categoriesSelect && categoriesSelect.value === 'Fonts') {
+                // Find the first non-disabled, non-hidden, non-Fonts option
+                const defaultOption = Array.from(categoriesSelect.options).find(opt => !opt.disabled && !opt.hidden && opt.value !== 'Fonts');
+                if (defaultOption) {
+                     categoriesSelect.value = defaultOption.value;
+                } else {
+                    // Or reset to the placeholder if no other suitable option
+                    const placeholderOption = Array.from(categoriesSelect.options).find(opt => opt.disabled && opt.hidden);
+                    if (placeholderOption) categoriesSelect.value = placeholderOption.value;
+                }
+            }
+        }
+        autoPopulateFields(type); // Update tags/description based on format change
+    }
+
+
+    // --- Auto-population Logic (Common, parameterized) ---
+    function autoPopulateFields(type) {
+        const postTitleInput = document.getElementById(`post-title-${type}`);
+        const postTitle = postTitleInput.value;
+        const licenseSelect = document.getElementById(`license-${type}`);
+        const licenseValue = licenseSelect.value;
+        const mainFormatSelect = document.getElementById(`formats-${type}`);
+        const categoriesSelect = document.getElementById(`categories-${type}`);
+        const categoryValue = categoriesSelect.value;
+
+        let actualFormatValue = mainFormatSelect.value;
+        if (actualFormatValue === 'Fonts') {
+            const fontTypeSelect = document.getElementById(`font-type-${type}`);
+            actualFormatValue = fontTypeSelect ? fontTypeSelect.value : '';
+        }
+
+
+        const relatedTagsInput = document.getElementById(`related-tags-${type}`);
+        const searchDescriptionInput = document.getElementById(`search-description-${type}`);
+
+        if (postTitle.trim() !== '') {
+            const titleTagsArray = postTitle.toLowerCase().replace(/-/g, ' ').replace(/[^a-z0-9\s]/gi, '').split(/\s+/).filter(tag => tag && tag.length > 0);
+            let defaultDesignTags = ["graphic design", "template", "creative", "design asset", "downloadable", "digital art"];
+
+            if (type === 'mobile') {
+                defaultDesignTags.push("mobile design");
+            } else if (type === 'computer') {
+                defaultDesignTags.push("computer design", "vector", "raster", "source file");
+            }
+
+            if (actualFormatValue && actualFormatValue !== "") {
+                defaultDesignTags.push(actualFormatValue.toLowerCase());
+                if (mainFormatSelect.value === 'Fonts') {
+                    defaultDesignTags.push("font");
+                    defaultDesignTags.push(actualFormatValue.toLowerCase() + " font");
+                } else {
+                    defaultDesignTags.push(actualFormatValue.toLowerCase() + " file");
+                }
+            }
+            defaultDesignTags.push(licenseValue.toLowerCase());
+            if (categoryValue && categoryValue !== "") {
+                 defaultDesignTags.push(categoryValue.toLowerCase());
+            }
+
+            const combinedTagsArray = [...new Set([...titleTagsArray, ...defaultDesignTags])];
+            const tags = combinedTagsArray.join(', ');
+
+            if (relatedTagsInput.value.trim() === '' || relatedTagsInput.getAttribute('data-auto-filled') === 'true') {
+                 relatedTagsInput.value = tags;
+                 relatedTagsInput.setAttribute('data-auto-filled', 'true');
+            }
+
+            let prefix = "Download the ";
+            if (licenseValue.toLowerCase() === "free") prefix += "free ";
+            else if (licenseValue.toLowerCase() === "premium") prefix += "premium ";
+
+            let formatText = (actualFormatValue && actualFormatValue !== "") ? actualFormatValue + " " : "";
+            let categoryText = (categoryValue && categoryValue !== "" && categoryValue !== "Fonts") ? " for " + categoryValue.toLowerCase() : (categoryValue === "Fonts" ? " font" : "");
+            if (mainFormatSelect.value === 'Fonts' && categoryValue === 'Fonts') categoryText = " font"; // Ensure "font for fonts" doesn't happen
+            
+            let designTypeSpecificText = type === 'mobile' ? "enhancing your projects" : "your graphic design projects";
+            let fileOrFontText = mainFormatSelect.value === 'Fonts' ? "font" : "file";
+
+
+            const description = `${prefix}${postTitle} ${formatText}${fileOrFontText}${categoryText}, perfect for ${designTypeSpecificText} with professional and eye-catching designs. Get your ${licenseValue.toLowerCase()} ${actualFormatValue && actualFormatValue !== "" ? actualFormatValue.toLowerCase() : 'design'} ${fileOrFontText} today!`;
+
+            const placeholderMatches = searchDescriptionInput.placeholder.includes("thumbnail") && (searchDescriptionInput.value.startsWith("Download the free ") || searchDescriptionInput.value.startsWith("Download the premium "));
+            const autoGeneratedPatternMatches = searchDescriptionInput.value.startsWith("Download the free ") || searchDescriptionInput.value.startsWith("Download the premium ");
+
+            if (searchDescriptionInput.value.trim() === '' || searchDescriptionInput.getAttribute('data-auto-filled') === 'true' || placeholderMatches || autoGeneratedPatternMatches) {
+                searchDescriptionInput.value = description;
+                searchDescriptionInput.setAttribute('data-auto-filled', 'true');
+            }
+        } else {
+            if (relatedTagsInput.getAttribute('data-auto-filled') === 'true') {
+                relatedTagsInput.value = '';
+                relatedTagsInput.removeAttribute('data-auto-filled');
+            }
+            if (searchDescriptionInput.getAttribute('data-auto-filled') === 'true') {
+                searchDescriptionInput.value = '';
+                searchDescriptionInput.removeAttribute('data-auto-filled');
+            }
+        }
+    }
+
+    // --- License Change Handler (Common, parameterized) ---
+    function handleLicenseChange(type) {
+        const licenseField = document.getElementById(`license-${type}`);
+        const priceBox = document.getElementById(`price-box-${type}`);
+        const downloadLinkBox = document.getElementById(`download-link-box-${type}`);
+        const downloadLinkInput = document.getElementById(`download-link-${type}`);
+
+        if (licenseField.value === 'Free') {
+            priceBox.style.display = 'none';
+            downloadLinkBox.style.display = 'block';
+            if(downloadLinkInput) downloadLinkInput.required = true;
+        } else {
+            priceBox.style.display = 'block';
+            downloadLinkBox.style.display = 'none';
+            if(downloadLinkInput) downloadLinkInput.required = false;
+        }
+        autoPopulateFields(type);
+    }
+
+    // --- Form Submission Handler (Common, parameterized) ---
+    function handleFormSubmit(e, type) {
+        e.preventDefault();
+
+        const postTitle = document.getElementById(`post-title-${type}`).value;
+        const imageUrl = document.getElementById(`image-url-${type}`).value;
+        const license = document.getElementById(`license-${type}`).value;
+        const price = license === 'Premium' ? document.getElementById(`price-${type}`).value + ' BDT' : '00 BDT';
+        
+        const mainFormatSelect = document.getElementById(`formats-${type}`);
+        let selectedMainFormat = mainFormatSelect.value; 
+        let formatsValueForDisplay = selectedMainFormat; 
+
+        let softwareValue = "";
+        let resolutionValue = "";
+        let softwareDetailHTML = "";
+        let resolutionDetailHTML = "";
+
+        if (selectedMainFormat === 'Fonts') {
+            const fontTypeSelect = document.getElementById(`font-type-${type}`);
+            formatsValueForDisplay = fontTypeSelect ? fontTypeSelect.value : 'Font'; 
+        } else {
+            softwareValue = document.getElementById(`software-${type}`).value;
+            resolutionValue = document.getElementById(`resolution-${type}`).value;
+            softwareDetailHTML = `<div class="plp-detail"><div class="icon-box"><icon name="software"></icon></div><div class="detail-text"><span class="category">Software</span><span class="value">${softwareValue}</span></div></div>`;
+            resolutionDetailHTML = `<div class="plp-detail"><div class="icon-box"><icon name="resolution"></icon></div><div class="detail-text"><span class="category">Resolution</span><span class="value">${resolutionValue}</span></div></div>`;
+        }
+
+        const fileSize = document.getElementById(`file-size-input-${type}`).value + ' ' + document.getElementById(`file-size-unit-${type}`).value;
+        const contributorSelectValue = document.getElementById(`contributor-${type}`).value;
+        let contributor = contributorSelectValue;
+        if (contributorSelectValue === "Custom") {
+            contributor = document.getElementById(`custom-contributor-name-${type}`).value;
+        }
+        const contributorUrl = document.getElementById(`contributor-url-${type}`).value;
+        const categories = document.getElementById(`categories-${type}`).value;
+        const uploadDate = document.getElementById(`upload-date-${type}`).value;
+        const relatedTags = document.getElementById(`related-tags-${type}`).value;
+        const searchDescription = document.getElementById(`search-description-${type}`).value;
+        const downloadLink = license === 'Free' ? document.getElementById(`download-link-${type}`).value : '';
+
+        const vectorId = generateVectorId();
+        let buttonCode;
+
+        if (license === 'Free') {
+            buttonCode = `<a class='button safeL' style='max-width:100%;width:100%;margin-right: 10px;justify-content: center' href='${downloadLink}'><i class='icon dl'></i>Free Download</a>`;
+        } else {
+            buttonCode = `<a class='button' style='max-width:100%;width:100%;margin-right: 10px;justify-content: center' href='/p/buy-design.html?victorId=${vectorId}&taka=${price.replace(' BDT', '')}&title=${encodeURIComponent(postTitle)}'><i class='icon buy'></i>Buy Now!</a>`;
+        }
+
+        let specificContent = "";
+        const commonFontContent = `
+<img class='pageImg' alt="How to Download Free and Premium Font (TTF, OTF, WOFF, EOT) and SVG Files" src="https://cloud.plpfiles.com/assets/images/download.svg"/>
+<p>Welcome to our website, where you can access both free and premium TTF, OTF, WOFF, EOT (font files), and SVG (vector graphics) files for your graphic design projects.</p>
+    <h2>Downloading Free TTF, OTF, WOFF, EOT, and SVG Files</h2>
+    <p>Downloading free font and SVG files from our website is incredibly easy...</p>
+    <ol class='unordered'><li>Browse our collection to find the file you need.</li><li>Click the "Download" button associated with the file.</li><li>The file will begin downloading to your device immediately.</li></ol>
+    <p>It's that simple!</p>
+    <h2>Purchasing Premium TTF, OTF, WOFF, EOT, and SVG Files</h2>
+    <p>If you're interested in our premium font and SVG files, here's how...</p>
+    <ol class='unordered'><li>Find the premium file you wish to purchase from our collection.</li><li>Click the "Buy Now" button.</li><li>Follow the instructions to send the payment using the provided methods.</li><li>Provide us with the transaction code or a screenshot of the payment confirmation.</li><li>Once confirmed, you will receive the file via email.</li></ol>
+    <p>We strive to make the process smooth and efficient.</p>
+    <h2>Why Choose Our Font and SVG Files?</h2>
+    <p>Our website offers a wide variety of high-quality fonts (TTF, OTF, WOFF, EOT) and scalable vector graphics (SVG) to enhance your creative projects.</p>
+    <h2>Have Questions?</h2>
+    <p>If you have any questions, please visit our <a href="/p/contact.html">Support Page</a>.</p>
+    <style>.headH::after{content:'categories'}</style>
+`;
+
+        if (type === "mobile") {
+            if (selectedMainFormat === 'Fonts') {
+                specificContent = `
+<div class="button-box">
+  <a class="button" href="/p/import-fonts-in-pixellab-and-designlab.html"><svg class='line' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12' stroke-miterlimit='10'/><path d='M22 2L13.8 10.2'/><path d='M13 6.17004V11H17.83'/></svg><span>How To Import Fonts In Pixellab And DesignLab</span></a>
+</div>
+${commonFontContent}
+`;
+            } else { // PLP, IPV, JPG, PNG for Mobile
+                specificContent = `
+<div style='text-align:center'>
+<div class="button-box">
+  <a class="button" href="/p/how-to-import-plp-ipv-files.html">
+    <svg class='line' viewBox='0 0 24 24'>
+      <path d='M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12' stroke-miterlimit='10'/>
+      <path d='M22 2L13.8 10.2'/>
+      <path d='M13 6.17004V11H17.83'/>
+    </svg>
+    <span>How to Import PLP IPV File?</span>
+  </a>
+  <a class="button" href="/p/how-to-download-free-and-premium-files.html">
+    <svg class='line' viewBox='0 0 24 24'>
+      <polyline points='8 17 12 21 16 17'/>
+      <line x1='12' x2='12' y1='12' y2='21'/>
+      <path d='M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29'/>
+    </svg>
+    <span>How to Download?</span>
+  </a>
+</div>
+</div>
+
+<img class='pageImg' alt="How to Import PLP IPV Files into PixelLab and Ibis Paint X" src='https://cloud.plpfiles.com/assets/images/server.svg'/>
+
+<p><strong>PixelLab</strong> and <strong>Ibis Paint X</strong> are two of the most popular mobile graphic design apps, perfect for editing text-based projects, social media posts, YouTube thumbnails, and more. With our PLP IPV files, you can easily import pre-made designs into these apps and start customizing instantly.</p>
+
+<h2>📥 How to Import PLP Files into <strong>PixelLab</strong></h2>
+<ol class='unordered'>
+  <li>Open the <strong>PixelLab</strong> app on your mobile device.</li>
+  <li>Tap the <strong>Menu</strong> icon (usually in the top-right corner).</li>
+  <li>Select <strong>“Open .plp file”</strong> from the list.</li>
+  <li>Tap the <strong>Import</strong> icon or browse your file manager.</li>
+  <li>Navigate to the folder where the PLP file is saved (usually in Downloads).</li>
+  <li>Select the PLP file to open it.</li>
+</ol>
+<p>The design will automatically load into PixelLab, ready for customization.</p>
+
+<h2>🎨 Editing the Design in PixelLab</h2>
+<ul class='unordered'>
+  <li>Edit text, change fonts, and adjust colors.</li>
+  <li>Reposition or remove design layers.</li>
+  <li>Add your own logos, icons, or images.</li>
+</ul>
+
+<h2>💾 Saving or Exporting in PixelLab</h2>
+<ol class='unordered'>
+  <li>Tap the <strong>Save</strong> icon at the top of the screen.</li>
+  <li>Choose to save as a <strong>Project</strong> or an <strong>Image</strong>.</li>
+  <li>Select your desired format (PNG, JPG) and quality.</li>
+  <li>Save it to your Gallery.</li>
+</ol>
+
+<h2>🖌️ How to Use PLP Files in <strong>Ibis Paint X</strong></h2>
+<ol class='unordered'>
+  <li>Edit the PLP file first in PixelLab.</li>
+  <li>Export the design as a high-quality image (PNG recommended).</li>
+  <li>Open <strong>Ibis Paint X</strong> on your device.</li>
+  <li>Create a new canvas or project.</li>
+  <li>Import the saved image from PixelLab as the base layer.</li>
+</ol>
+
+<h2>🛠️ Editing in Ibis Paint X</h2>
+<ul class='unordered'>
+  <li>Add artistic touches using brushes and effects.</li>
+  <li>Use layers to draw or paint over the image.</li>
+  <li>Apply shadows, highlights, outlines, or hand-drawn elements.</li>
+</ul>
+
+<h2>📤 Exporting from Ibis Paint X</h2>
+<ol class='unordered'>
+  <li>Tap the <strong>Export</strong> button.</li>
+  <li>Select PNG, JPG, or PSD as needed.</li>
+  <li>Save the image to your device or share directly.</li>
+</ol>
+
+<h2>❓ Need Help?</h2>
+<p>If you face any issues or have questions, please visit our <a href="/p/contact.html">Support Page</a>. We're here to help!</p>
+    <style>.headH::after{content:'${categories}'}</style>
+            `;
+            }
+        } else if (type === "computer") {
+            if (selectedMainFormat === 'Fonts') {
+                specificContent = `
+<div style='text-align:center'>
+<div class="button-box">
+  <a class="button" href="/p/import-fonts-in-computer.html">
+    <svg class='line' viewBox='0 0 24 24'>
+      <path d='M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12' stroke-miterlimit='10'/>
+      <path d='M22 2L13.8 10.2'/>
+      <path d='M13 6.17004V11H17.83'/>
+    </svg>
+    <span>How To Import Fonts In Computer</span>
+  </a>
+</div>
+</div>
+<div style='text-align:center'>
+<div class="button-box">
+  <a class="button" href="/p/how-to-download-free-and-premium-files.html">
+    <svg class='line' viewBox='0 0 24 24'>
+      <polyline points='8 17 12 21 16 17'/>
+      <line x1='12' x2='12' y1='12' y2='21'/>
+      <path d='M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29'/>
+    </svg>
+    <span>How to Download?</span>
+  </a>
+</div>
+</div>
+
+<img class='pageImg' alt="How to Download Free and Premium PSD EPS AI Files" src="https://cloud.plpfiles.com/assets/images/download.svg"/>
+
+<p>Welcome to our website, where you can access both free and premium <strong>PSD, EPS, and AI</strong> files for computer-based graphic design using <strong>Adobe Photoshop</strong> and <strong>Adobe Illustrator</strong>. Our resources are tailored for designers looking to enhance their work with professional templates and assets.</p>
+
+<h2>Downloading Free PSD, EPS, and AI Files</h2>
+<p>Downloading free design files from our website is incredibly easy:</p>
+<ol class='unordered'>
+  <li>Browse our collection of free PSD, EPS, and AI templates.</li>
+  <li>Click the <strong>Download</strong> button on your chosen file.</li>
+  <li>Your download will begin instantly without any registration.</li>
+</ol>
+<p>It’s that simple! Enjoy unlimited creative freedom with our free resources.</p>
+
+<h2>Purchasing Premium PSD, EPS, and AI Files</h2>
+<p>If you're interested in our premium assets, here’s how to get them:</p>
+<ol class='unordered'>
+  <li>Find your desired premium file from our premium section.</li>
+  <li>Click the <strong>Buy Now</strong> button.</li>
+  <li>Send payment using the provided payment methods.</li>
+  <li>Submit your transaction ID via our contact form or email.</li>
+  <li>You’ll receive your file via email within minutes.</li>
+</ol>
+<p>We strive to ensure a secure and smooth purchasing experience for every user.</p>
+
+<h2>How to Open and Edit Files in Adobe Photoshop</h2>
+<ol class='unordered'>
+  <li>Launch <strong>Adobe Photoshop</strong> on your computer.</li>
+  <li>Go to <strong>File &gt; Open</strong> and select your downloaded PSD file.</li>
+  <li>Photoshop will open the file with all layers intact for easy editing.</li>
+  <li>You can now customize text, images, shapes, colors, and more.</li>
+</ol>
+
+<h2>How to Open and Edit Files in Adobe Illustrator</h2>
+<ol class='unordered'>
+  <li>Launch <strong>Adobe Illustrator</strong> on your computer.</li>
+  <li>Go to <strong>File &gt; Open</strong> and choose your AI or EPS file.</li>
+  <li>All vector shapes and texts will be editable in Illustrator.</li>
+  <li>Use the selection tool and layers panel to modify your design.</li>
+</ol>
+
+<h2>Why Choose Our PSD, EPS, and AI Files?</h2>
+<p>Our website offers a wide variety of professional templates for logos, posters, social media posts, business cards, and more. Each file is high-quality, editable, and compatible with industry-standard software like Photoshop and Illustrator.</p>
+
+<h2>Need Help?</h2>
+<p>If you encounter any issues while downloading, importing, or editing PSD, EPS, or AI files in Adobe software, please don’t hesitate to reach out via our <a href="/p/contact.html">Support Page</a>. We’re always here to assist you!</p>
+            <style>.headH::after{content:'${categories}'}</style>
+            `;
+            }
+        }
+
+
+        const generatedCode = `
+<!--[ DesignLab Official Post Generator - ${type.toUpperCase()} ]-->
+<meta name="keywords" content="${relatedTags}">
+<meta name="description" content="${searchDescription}" />
+<div hidden='' aria-hidden='true'>${relatedTags}</div>
+<div class="flex-container">
+    <div class="image-section"><div class='img-view separator'><img alt='${postTitle}' src='${imageUrl}'/></div></div>
+    <div class="details-section">
+        <div class="plp-details-container">
+            ${softwareDetailHTML}
+            ${resolutionDetailHTML}
+            <div class="plp-detail"><div class="icon-box"><icon name="price"></icon></div><div class="detail-text"><span class="category">Price</span><span class="value">${price}</span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="size"></icon></div><div class="detail-text"><span class="category">Size</span><span class="value">${fileSize}</span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="contributor"></icon></div><div class="detail-text"><span class="category">Contributor</span><span class="value"><a href='${contributorUrl}'>${contributor}</a></span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="category"></icon></div><div class="detail-text"><span class="category">Category</span><span class="value"><a href="/search/Label/${categories}">${categories}</a></span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="format"></icon></div><div class="detail-text"><span class="category">Format</span><span class="value">${formatsValueForDisplay}</span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="date"></icon></div><div class="detail-text"><span class="category">Date</span><span class="value">${uploadDate}</span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="license"></icon></div><div class="detail-text"><span class="category">License</span><span class="value">${license}</span></div></div>
+            <div class="plp-detail"><div class="icon-box"><icon name="vector"></icon></div><div class="detail-text"><span class="category">Vector ID</span><span class="value" id="vector-id-${vectorId}">${vectorId}</span></div></div>
+            <!--[
+            Title: ${postTitle}
+            Permalink: ${vectorId}
+            Label: ${license === 'Free' ? 'Free' : 'Premium'},${categories}
+            Search Description: ${searchDescription}
+            ]-->
+        </div>
+        <div class="download-box">${buttonCode}</div>
+    </div>
+</div>
+${specificContent}
+<!--[ Related Tags Section DesignLab Official ]-->
+<div hidden='' aria-hidden='true'>${relatedTags}</div>
+<!--[ Meta Info ]
+Title: ${postTitle}
+Permalink: ${vectorId}
+Label: ${license === 'Free' ? 'Free' : 'Premium'},${categories}
+Search Description: ${searchDescription}
+]-->`;
+
+        document.getElementById('outputCode').innerText = generatedCode.trim();
+        document.getElementById('generatedCodeSection').style.display = 'block';
+        document.getElementById('copyButton').style.display = 'inline-block';
+    }
+
+
+    // --- Initial Setup Function ---
+    function initializeForm(type) {
+        document.getElementById(`upload-date-${type}`).value = getCurrentDate();
+        updateContributorFields(type);
+        document.getElementById(`contributor-${type}`).addEventListener('change', () => updateContributorFields(type));
+
+        const licenseField = document.getElementById(`license-${type}`);
+        licenseField.addEventListener('change', () => handleLicenseChange(type));
+        handleLicenseChange(type); 
+
+        const formatsField = document.getElementById(`formats-${type}`);
+        formatsField.addEventListener('change', () => handleFormatChange(type));
+        handleFormatChange(type); 
+
+        document.getElementById(`post-title-${type}`).addEventListener('input', () => autoPopulateFields(type));
+        document.getElementById(`categories-${type}`).addEventListener('change', () => autoPopulateFields(type));
+        const fontTypeSelect = document.getElementById(`font-type-${type}`);
+        if(fontTypeSelect) fontTypeSelect.addEventListener('change', () => autoPopulateFields(type));
+
+        document.getElementById(`related-tags-${type}`).addEventListener('input', function() { this.removeAttribute('data-auto-filled'); });
+        document.getElementById(`search-description-${type}`).addEventListener('input', function() { this.removeAttribute('data-auto-filled'); });
+
+        document.getElementById(`postForm${type.charAt(0).toUpperCase() + type.slice(1)}`).addEventListener('submit', (e) => handleFormSubmit(e, type));
+    }
+
+
+    // --- Main Selector Logic ---
+    document.getElementById('file-type-selector').addEventListener('change', function() {
+        const selectedType = this.value;
+        const mobileForm = document.getElementById('mobile-form-section');
+        const computerForm = document.getElementById('computer-form-section');
+        const generatedCodeSection = document.getElementById('generatedCodeSection');
+        const copyButton = document.getElementById('copyButton');
+
+        mobileForm.style.display = 'none';
+        computerForm.style.display = 'none';
+        generatedCodeSection.style.display = 'none';
+        copyButton.style.display = 'none';
+        document.getElementById('outputCode').innerText = ''; 
+
+        if (selectedType === 'mobile') {
+            mobileForm.style.display = 'block';
+            initializeForm('mobile');
+        } else if (selectedType === 'computer') {
+            computerForm.style.display = 'block';
+            initializeForm('computer');
+        }
+    });
+
+    // --- Copy Button (Common) ---
+    document.getElementById("copyButton").addEventListener("click", function () {
+        const codeElement = document.getElementById("outputCode");
+        const codeText = codeElement.innerText;
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = codeText;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        this.innerText = "Copy completed!";
+        setTimeout(() => (this.innerText = "COPY"), 2000);
+    });
+
+</script>
